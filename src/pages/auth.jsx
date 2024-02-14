@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, IconButton, InputAdornment, TextField } from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
+import PasswordInput from '../other/passwordInput';
+
 const Auth = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  // const [showPassword, setShowPassword] = useState(false);
 
   const handleCreateUserPOST = async () => {
     try {
@@ -40,6 +44,8 @@ const Auth = () => {
       // notification
     } else {
       console.log('Too short');
+      setUserName('');
+      setPassword('');
       // notification
     }
   };
@@ -58,6 +64,11 @@ const Auth = () => {
         className='input'
         value={password}
         onChange={e => setPassword(e.target.value)}
+      />
+
+      <PasswordInput
+        password={password}
+        handlePassword={e => setPassword(e.target.value)}
       />
 
       <Button variant='contained' color='primary' onClick={handleSubmit}>
