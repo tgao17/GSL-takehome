@@ -2,6 +2,9 @@
 node_modules/
 .pnp/
 .pnp.js
+dist/
 
 # Parcel cache
 .parcel-cache/
+
+.eslintrc.js
