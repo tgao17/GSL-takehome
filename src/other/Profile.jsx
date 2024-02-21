@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { GLOBALContext } from '../globalStateContext';
 import { LoanCard } from './LoanCard';
 
@@ -23,9 +23,10 @@ export const Profile = () => {
     return (
       <div className='Profile'>
         <div>Now showing Profile ID: {userID}</div>
-        <div>Loans Self:</div>
-        {state.userList[userID]['Loans'].map((loan, index) => {
-          if (loan.owner_id === userID) {
+        <h4>Loans Self:</h4>
+        {state.userList[userID]['Loans']
+          .filter(loan => loan.owner_id === userID)
+          .map((loan, index) => {
             return (
               <LoanCard
                 key={`key='loanCardSelf_${userID}_${index}`}
@@ -33,11 +34,11 @@ export const Profile = () => {
                 isForeign={false}
               />
             );
-          }
-        })}
-        <div>Loans Linked:</div>
-        {state.userList[userID]['Loans'].map((loan, index) => {
-          if (loan.owner_id !== userID) {
+          })}
+        <h4>Loans Linked:</h4>
+        {state.userList[userID]['Loans']
+          .filter(loan => loan.owner_id !== userID)
+          .map((loan, index) => {
             return (
               <LoanCard
                 key={`key='loanCardSelf_${userID}_${index}`}
@@ -45,8 +46,7 @@ export const Profile = () => {
                 isForeign={true}
               />
             );
-          }
-        })}
+          })}
       </div>
     );
   }

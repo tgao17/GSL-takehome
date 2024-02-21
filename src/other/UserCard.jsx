@@ -17,6 +17,27 @@ export const UserCard = ({ index }) => {
     return;
   };
 
+  const fetchLoanByID = async loanId => {
+    try {
+      const response = await fetch(
+        `https://gl-interview.azurewebsites.net/loans/${loanId}?user_id=${index}`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log('UserCard: fetchbyLoanID: ', data);
+        return data;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const fetchUserLoan = async () => {
     try {
       const response = await fetch(
@@ -30,10 +51,25 @@ export const UserCard = ({ index }) => {
       );
       if (response.ok) {
         const data = await response.json();
+
+        //Create a copy
         const newUserList = [...state.userList];
         newUserList[index]['Loans'] = data;
+        let loanList = newUserList[index]['Loans'];
+
+        // // ADD NEW ASYNC CALL HERE FOR RETRIEVING LOANS!
+        for (let i = 0; i < loanList.length; i++) {
+          let loanID = loanList[i].id;
+          let loanDetail = await fetchLoanByID(loanID); // returns a promise
+          console.log('UserCard: fetchUserLoan: ', loanDetail);
+          loanList[i].loanDetail = loanDetail;
+        }
+
         dispatch({ type: 'SET_USER_LIST', payload: newUserList });
-        console.log('userCard.jsx: ', state.userList[index]['Loans']);
+        console.log(
+          'userCard.jsx: LoanCard Array: ',
+          state.userList[index]['Loans'],
+        );
       } else {
         const newUserList = [...state.userList];
         newUserList[index]['Loans'] = [];
@@ -52,7 +88,7 @@ export const UserCard = ({ index }) => {
       className='UserCard'
       onClick={handleOnClick}
       style={
-        selected && state.userID === index ? { backgroundColor: '#035ef5' } : {}
+        selected && state.userID === index ? { backgroundColor: '#1a77e1' } : {}
       }>
       <img src={userPicture} style={{ width: '15%', height: '100%' }} />
       <div

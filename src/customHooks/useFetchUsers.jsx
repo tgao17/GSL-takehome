@@ -15,7 +15,7 @@ export const useFetchUsers = () => {
     let fetchedUsers = [];
     let offset = 0;
     let hasMoreData = true;
-
+    console.log('Fetching Users...');
     while (hasMoreData) {
       const url = new URL('https://gl-interview.azurewebsites.net/users');
       url.searchParams.append('offset', offset);
@@ -57,7 +57,7 @@ export const useFetchUsers = () => {
 
     setIsLoading(false);
     dispatch({ type: 'SET_USER_LIST', payload: result });
-    console.log(state.userList);
+    console.log('Fetch Complete!', state.userList);
   };
 
   return isLoading;

@@ -6,13 +6,18 @@ export const LoanCard = ({ loanObject, isForeign }) => {
 
   return (
     <div className='LoanCard'>
-      <div>Amount: {loanObject.amount}</div>
-      <div>Apr: {loanObject.apr}</div>
-      <div>Term: {loanObject.term}</div>
-      <div>Status: '{loanObject.status}'</div>
-      {isForeign ? (
-        <div>Loan Owner: '{state.userList[loanObject.owner_id].username}'</div>
-      ) : null}
+      <div className='LoanCard1'>
+        <div>Amount: {loanObject.amount}</div>
+        <div>Apr: {loanObject.apr}</div>
+        <div>Term: {loanObject.term}</div>
+        <div>Status: '{loanObject.status}'</div>
+        {isForeign ? (
+          <div>
+            Loan Owner: '{state.userList[loanObject.owner_id].username}'
+          </div>
+        ) : null}
+      </div>
+      <div className='LoanCard2'>{loanObject.id}</div>
     </div>
   );
 };

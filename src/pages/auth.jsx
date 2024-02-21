@@ -133,7 +133,7 @@ export const Login = () => {
    * For handling submittion of my buttons
    */
   const handleLogin = async () => {
-    handleGetUser();
+    // handleGetUser();
     navigateHome();
   };
 
