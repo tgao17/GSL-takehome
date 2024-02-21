@@ -1,0 +1,100 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+body {
+  margin: 0px;
+}
+
+.landingText {
+  color: white;
+}
+.sphere {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+}
+
+.masterStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  /* pointer-events: none; */
+  padding: 4rem;
+  /* height: 100vh; */
+}
+
+.scrollBar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 1rem;
+  justify-content: space-between;
+  background-color: #e7e7e7;
+  width: 20rem;
+}
+
+.scrollUsers {
+  height: 50vh;
+  overflow: auto;
+  padding: 0.5rem 0.5rem;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.UserCard {
+  /* border: 1px solid black; */
+  display: flex;
+  gap: 20px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  align-items: center;
+  /* border-radius: 10p; */
+}
+
+.UserCard:hover {
+  background-color: rgb(
+    235,
+    235,
+    235
+  ); /* Temporary: To test if hover state is working */
+}
+
+.rem35 {
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.simpleButton {
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.simpleButton:hover {
+  box-shadow: 0px 0px 1.2rem #a889e7;
+}
+
+.Profile {
+  flex: 1;
+  padding: 2.5rem 2rem;
+  overflow: auto;
+  height: 100vh;
+  /* width: 100%; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.LoanCard {
+  border: 1px solid rgb(196, 196, 196);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
