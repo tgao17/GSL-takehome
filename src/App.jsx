@@ -32,20 +32,6 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  // const { state } = useReducer(GLOBALContext);
-  // // let navigate = useNavigate();
-  // console.log(state);
-  // switch (state.viewMode) {
-  //   case 'landing':
-  //     navigate('/');
-  //     break;
-  //   case 'login':
-  //     navigate('/login');
-  //     break;
-  //   default:
-  //     navigate('/');
-  // }
-
   return (
     <GLOBALContextProvider>
       <RouterProvider router={router} />

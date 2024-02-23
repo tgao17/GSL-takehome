@@ -1,11 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { GLOBALContext } from '../globalStateContext';
-import { UserCard } from './UserCard';
 import { Button } from '@mui/material';
+import { SBAllUsers } from './Sidebar/SBAllUsers';
+import { SBCreateUser } from './Sidebar/SBCreateUser';
+import { SBCreateLoan } from './Sidebar/SBCreateLoan';
 
 export const UserSidebar = () => {
   const { state, dispatch } = useContext(GLOBALContext);
+
+  const handleSwitchSBMode = mode => {
+    console.log(state.sideBar);
+    console.log(mode);
+    dispatch({ type: 'SET_SIDE_BAR', payload: mode });
+  };
+
+  const sideBarComponents = {
+    ALL_USERS: <SBAllUsers />,
+    CREATE_USER: <SBCreateUser />,
+    CREATE_LOAN: <SBCreateLoan />,
+  };
 
   return (
     <div className='scrollBar'>
@@ -18,19 +31,26 @@ export const UserSidebar = () => {
           <h4>{state.userList[state.userID].username}</h4>
         )}
       </div>
-      <div className='scrollUsers'>
-        {state.userList.map((user, index) => {
-          return <UserCard key={`usercard_${index}`} index={index} />;
-        })}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <Button variant='contained' color='primary'>
+
+      {sideBarComponents[state.sideBar]}
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '.5rem' }}>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => handleSwitchSBMode('CREATE_USER')}>
           Create User
         </Button>
-        <Button variant='contained' color='primary'>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => handleSwitchSBMode('CREATE_LOAN')}>
           Create Loan
         </Button>
-        <Button variant='contained' color='primary'>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => handleSwitchSBMode('ALL_USERS')}>
           All Users
         </Button>
       </div>

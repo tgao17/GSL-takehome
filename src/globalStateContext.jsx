@@ -6,8 +6,8 @@ import globalReducer from './globalReducer';
 const initDefault = {
   userID: null,
   userList: [],
-  viewMode: 'landing',
   termID: null,
+  sideBar: 'ALL_USERS',
 };
 
 // useContext init

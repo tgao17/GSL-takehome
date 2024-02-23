@@ -13,7 +13,7 @@ export const Profile = () => {
         <div>Pick a user to show Profile</div>
       </div>
     ); // initial state
-  } else if (state.userList[userID]['Loans'] === undefined) {
+  } else if (state.userList[userID].Loans === undefined) {
     return (
       <div className='Profile'>
         <div>PULLING UP USER INFO...</div>
@@ -47,6 +47,9 @@ export const Profile = () => {
               />
             );
           })}
+        {state.userList[userID].Loans.length === 0 ? (
+          <div>User has nothing to show</div>
+        ) : null}
       </div>
     );
   }

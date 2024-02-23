@@ -54,6 +54,7 @@ export const UserCard = ({ index }) => {
 
         //Create a copy
         const newUserList = [...state.userList];
+        // newUserList[index]['Loans'] = [];
         newUserList[index]['Loans'] = data;
         let loanList = newUserList[index]['Loans'];
 
@@ -62,6 +63,7 @@ export const UserCard = ({ index }) => {
           let loanID = loanList[i].id;
           let loanDetail = await fetchLoanByID(loanID); // returns a promise
           console.log('UserCard: fetchUserLoan: ', loanDetail);
+          // every loan has details so we can safely assign
           loanList[i].loanDetail = loanDetail;
         }
 
@@ -71,12 +73,13 @@ export const UserCard = ({ index }) => {
           state.userList[index]['Loans'],
         );
       } else {
-        const newUserList = [...state.userList];
-        newUserList[index]['Loans'] = [];
-        dispatch({ type: 'SET_USER_LIST', payload: newUserList });
-        console.log(`no loans found for user ${index}`);
+        alert('Response not 200');
       }
     } catch (err) {
+      //   const newUserList = [...state.userList];
+      //   newUserList[index]['Loans'] = [];
+      //   dispatch({ type: 'SET_USER_LIST', payload: newUserList });
+      alert('An error occurred: ' + err.message);
       console.log(err);
     } finally {
       // console.log()

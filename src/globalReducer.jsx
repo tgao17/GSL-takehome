@@ -6,8 +6,9 @@ import { useReducer, createContext } from 'react';
  */
 const SET_USER_ID = 'SET_USER_ID';
 const SET_USER_LIST = 'SET_USER_LIST';
-const SET_VIEW_MODE = 'SET_VIEW_MODE';
+
 const SET_TERM_ID = 'SET_TERM_ID';
+const SET_SIDE_BAR = 'SET_SIDE_BAR';
 
 function globalReducer(state, action) {
   switch (action.type) {
@@ -15,10 +16,10 @@ function globalReducer(state, action) {
       return { ...state, userID: action.payload };
     case SET_USER_LIST:
       return { ...state, userList: action.payload };
-    case SET_VIEW_MODE:
-      return { ...state, viewMode: action.payload };
     case SET_TERM_ID:
       return { ...state, termID: action.payload };
+    case SET_SIDE_BAR:
+      return { ...state, sideBar: action.payload };
     default:
       return state;
   }

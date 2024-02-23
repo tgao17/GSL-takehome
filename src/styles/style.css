@@ -46,6 +46,15 @@ body {
   gap: 0.3rem;
 }
 
+.sbForm {
+  height: 50vh;
+  background-color: white;
+  border-radius: 8px;
+  padding: 0.5rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 .UserCard {
   /* border: 1px solid black; */
   display: flex;
@@ -92,16 +101,48 @@ body {
   gap: 0.5rem;
 }
 .LoanCard {
-  border: 1px solid rgb(196, 196, 196);
+  border: 1px solid rgb(225, 225, 225);
   display: flex;
-  gap: 10px;
   padding: 0.5rem;
 }
 
+.LoanCard:hover {
+  border: 1px solid rgb(148, 187, 223);
+}
+
 .LoanCard1 {
-  border: 1px solid rgb(196, 196, 196);
+  /* border: 1px solid rgb(196, 196, 196); */
   display: flex;
+  /* flex: 1; */
   flex-direction: column;
   gap: 10px;
+  padding: 1rem;
+  width: 15rem;
+}
+
+.LoanCard2 {
+  border: 1.5px solid rgb(0, 0, 0);
+  display: flex;
+  /* gap: 10px; */
+  /* padding: 0.5rem; */
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.LoanCard2:hover {
+  border: 1.5px solid rgb(0, 132, 255);
+  box-shadow: #a889e7;
+}
+
+.LoanCard2_card {
+  border: 0.1px solid rgb(232, 232, 232);
+  display: flex;
+  flex-shrink: 0; /* Prevents the item from shrinking */
+  flex-direction: column;
+  /* align-items: end; */
+  width: 200px;
+  /* justify-content: space-between; */
+  gap: 1rem;
   padding: 0.5rem;
+  /* padding-left: ; */
 }
