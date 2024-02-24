@@ -8,6 +8,8 @@ import { SBCreateLoan } from './Sidebar/SBCreateLoan';
 export const UserSidebar = () => {
   const { state, dispatch } = useContext(GLOBALContext);
 
+  const refetch = () => {};
+
   const handleSwitchSBMode = mode => {
     console.log(state.sideBar);
     console.log(mode);
@@ -52,6 +54,9 @@ export const UserSidebar = () => {
           color='primary'
           onClick={() => handleSwitchSBMode('ALL_USERS')}>
           All Users
+        </Button>
+        <Button variant='contained' color='secondary' onClick={refetch}>
+          Refetch
         </Button>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { GLOBALContext } from '../../globalStateContext';
 import GeneralInput from '../Input';
-import DropdownExample from './Choices';
 
 import {
   Button,
@@ -13,24 +12,62 @@ import {
 
 export const SBCreateLoan = () => {
   const { state } = useContext(GLOBALContext);
-  const [userName, setUserName] = useState('');
+  const [owner_id, setOwner_id] = useState('');
   const [amount, setAmount] = useState('');
   const [APR, setAPR] = useState('');
+  const [term, setTerm] = useState('');
   const [status, setStatus] = useState('');
 
   const handleStatus = event => {
     setStatus(event.target.value);
   };
 
-  const handleSubmit = () => {
-    //submit
+  const createLoan = async () => {
+    try {
+      const response = await fetch(
+        'https://gl-interview.azurewebsites.net/loans',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            amount: amount,
+            apr: APR,
+            term: term,
+            status: status,
+            owner_id: owner_id,
+          }),
+        },
+      );
+      if (response.ok) {
+        //update loanobject of this person
+      }
+    } catch (err) {
+      alert(err);
+    }
   };
+
+  const handleSubmit = () => {
+    //check if the fields are ok
+    if (
+      !(typeof amount == 'number' || Number.isInteger(amount)) ||
+      typeof apr != 'number' ||
+      !Number.isInteger(term) ||
+      typeof owner_id != 'string'
+    ) {
+      alert('Bad Fields, please revise');
+    }
+    //create loan
+    createLoan();
+  };
+
   return (
     <div className='sbForm'>
       <div>Create Loan</div>
       <GeneralInput
-        value={userName}
-        action={e => setUserName(e.target.value)}
+        value={owner_id}
+        action={e => setOwner_id(e.target.value)}
         label={'USER ID'}
       />
 
@@ -44,6 +81,12 @@ export const SBCreateLoan = () => {
         value={APR}
         action={e => setAPR(e.target.value)}
         label={'APR (%)'}
+      />
+
+      <GeneralInput
+        value={term}
+        action={e => setTerm(e.target.value)}
+        label={'TERM (mo)'}
       />
 
       <FormControl fullWidth>
